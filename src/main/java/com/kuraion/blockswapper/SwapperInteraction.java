@@ -28,7 +28,11 @@ public class SwapperInteraction {
         ItemStack heldOff = player.getOffhandItem();
 
         BlockState oldBlockState = world.getBlockState(pos);
-        BlockState newBlockState = heldOff.getItem() instanceof BlockItem _bi ? _bi.getBlock().withPropertiesOf(oldBlockState) : null;
+        BlockState newBlockState = null;
+        if (heldOff.getItem() instanceof BlockItem _bi) newBlockState = _bi.getBlock().withPropertiesOf(oldBlockState);
+        else if (!player.getOffhandItem().isEmpty()){
+            return;
+        }
 
         boolean notFacingBlock = (facing == null);
         boolean playerCanEditBlock = player.mayUseItemAt(pos.offset(facing.getNormal()), facing, heldMain);
