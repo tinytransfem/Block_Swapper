@@ -13,7 +13,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -29,7 +28,11 @@ public class SwapperInteraction {
         ItemStack heldOff = player.getOffhandItem();
 
         BlockState oldBlockState = world.getBlockState(pos);
-        BlockState newBlockState = heldOff.getItem() instanceof BlockItem _bi ? _bi.getBlock().withPropertiesOf(oldBlockState) : null;
+        BlockState newBlockState = null;
+        if (heldOff.getItem() instanceof BlockItem _bi) newBlockState = _bi.getBlock().withPropertiesOf(oldBlockState);
+        else if (!player.getOffhandItem().isEmpty()){
+            return;
+        }
 
         boolean notFacingBlock = (facing == null);
         boolean playerCanEditBlock = player.mayUseItemAt(pos, facing, heldMain);
