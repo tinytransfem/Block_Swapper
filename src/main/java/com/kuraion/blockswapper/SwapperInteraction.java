@@ -8,8 +8,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -85,10 +87,19 @@ public class SwapperInteraction {
             return;
         }
 
+        //set drops
+        boolean normalDrops = !player.isCreative();
+        ItemStack drops = null;
+        if (normalDrops && player.getMainHandItem().getEnchantmentLevel(Enchantments.SILK_TOUCH) > 0) {
+            normalDrops = false;
+            drops = oldBlockState.getBlock().asItem().getDefaultInstance();
+        }
+
         //execute swap
         world.playSound(player, pos, oldSound.getBreakSound(), SoundSource.BLOCKS, oldSound.getVolume(), oldSound.getPitch());
         if(!world.isClientSide()) {
-            world.destroyBlock(pos, !player.isCreative());
+            world.destroyBlock(pos, normalDrops);
+            if (!player.isCreative() && !normalDrops) world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), drops));
             world.setBlock(pos, newBlockState, 11);
             if (!player.isCreative() && newBlockState != Blocks.AIR.defaultBlockState()) heldOff.shrink(1);
             world.gameEvent(GameEvent.BLOCK_CHANGE, event.getPos(), GameEvent.Context.of(player, newBlockState));
