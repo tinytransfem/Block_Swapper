@@ -15,3 +15,4 @@ public class EnchantmentsInit {
 
     public static final RegistryObject<Enchantment> EXCAVATING = ENCHANTMENTS.register("excavating", () -> new ExcavatingEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
 }
+
