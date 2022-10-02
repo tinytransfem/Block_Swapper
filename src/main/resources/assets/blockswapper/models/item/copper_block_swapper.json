@@ -1,6 +1,7 @@
 {
 	"parent": "blockswapper:custom/block_swapper",
 	"textures": {
-		"2": "blockswapper:items/copper_block_swapper"
+		"2": "blockswapper:items/copper_block_swapper",
+		"particle": "blockswapper:items/copper_block_swapper"
 	}
 }

@@ -1,7 +1,8 @@
 {
 	"texture_size": [48, 32],
 	"textures": {
-		"2": "blockswapper:items/diamond_block_swapper"
+		"2": "blockswapper:items/diamond_block_swapper",
+		"particle": "blockswapper:items/diamond_block_swapper"
 	},
 	"elements": [
 		{
