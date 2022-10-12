@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -100,9 +101,14 @@ public class SwapperInteraction {
         if(!world.isClientSide()) {
             world.destroyBlock(pos, normalDrops);
             if (!player.isCreative() && !normalDrops) world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), drops));
-            world.setBlock(pos, newBlockState, 11);
+            if (newBlockState.hasProperty(BlockStateProperties.PERSISTENT) && !oldBlockState.hasProperty(BlockStateProperties.PERSISTENT)) {
+                world.setBlock(pos, newBlockState.setValue(BlockStateProperties.PERSISTENT, true), 11);
+                world.gameEvent(GameEvent.BLOCK_CHANGE, event.getPos(), GameEvent.Context.of(player, newBlockState.setValue(BlockStateProperties.PERSISTENT, true)));
+            } else {
+                world.setBlock(pos, newBlockState, 11);
+                world.gameEvent(GameEvent.BLOCK_CHANGE, event.getPos(), GameEvent.Context.of(player, newBlockState));
+            }
             if (!player.isCreative() && newBlockState != Blocks.AIR.defaultBlockState()) heldOff.shrink(1);
-            world.gameEvent(GameEvent.BLOCK_CHANGE, event.getPos(), GameEvent.Context.of(player, newBlockState));
             heldMain.hurtAndBreak(1, player, (pl) -> { pl.broadcastBreakEvent(EquipmentSlot.MAINHAND); });
         }
         SoundType newSound = newBlockState.getSoundType();
