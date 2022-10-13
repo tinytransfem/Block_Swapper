@@ -1,0 +1,13 @@
+{
+  "group": "blockswapper",
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "blockswapper:copper_block_swapper"
+  },
+  "result": {
+    "item": "blockswapper:netherite_block_swapper"
+  }
+}
