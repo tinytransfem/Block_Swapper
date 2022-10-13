@@ -37,7 +37,8 @@ public class BlockSwapperMod {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ServerConfig.SERVER_CONFIG);
 
-        MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::onRightClick);
+        MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::swapperMainHandInteraction);
+        MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::swapperOffhandInteraction);
         MinecraftForge.EVENT_BUS.addListener(MissingMappings::missingMapping);
     }
 
