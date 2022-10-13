@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -46,6 +47,7 @@ public class SwapperInteraction {
         boolean creative = player.isCreative() && ServerConfig.doesCreativeAffect();
         boolean canMine = creative;
         boolean notEntity = !oldBlockState.hasBlockEntity();
+        boolean notIllegalPlanting = ServerConfig.canPlant() || (!player.getOffhandItem().is(Tags.Items.SEEDS) && !player.getOffhandItem().is(Tags.Items.CROPS));
 
         //validate swapper hand
         if (heldMain.is(ItemsInit.COPPER_BLOCK_SWAPPER.get())) {
@@ -81,7 +83,7 @@ public class SwapperInteraction {
         if (ServerConfig.getSwapDisabled(oldBlockState.getBlock())) canMine = false;
         if (player.hasEffect(MobEffect.byId(4)) && ServerConfig.doesFatigueAffect()) canMine = false;
 
-        if (!facingBlock || !playerCanEditBlock || !notEntity) return;
+        if (!facingBlock || !playerCanEditBlock || !notEntity || !notIllegalPlanting) return;
         if (newBlockState.equals(oldBlockState) || (!canMine && !creative)) {
             world.playSound(player, pos, oldSound.getBreakSound(), SoundSource.BLOCKS, oldSound.getVolume(), oldSound.getPitch());
             event.setCanceled(true);
@@ -142,6 +144,7 @@ public class SwapperInteraction {
         boolean creative = player.isCreative() && ServerConfig.doesCreativeAffect();
         boolean canMine = creative;
         boolean notEntity = !oldBlockState.hasBlockEntity();
+        boolean notIllegalPlanting = ServerConfig.canPlant() || (!player.getMainHandItem().is(Tags.Items.SEEDS) && !player.getMainHandItem().is(Tags.Items.CROPS));
 
         //validate swapper hand
         if (heldOff.is(ItemsInit.COPPER_BLOCK_SWAPPER.get())) {
@@ -178,7 +181,7 @@ public class SwapperInteraction {
         if (ServerConfig.getSwapDisabled(oldBlockState.getBlock())) canMine = false;
         if (player.hasEffect(MobEffect.byId(4)) && ServerConfig.doesFatigueAffect()) canMine = false;
 
-        if (!facingBlock || !playerCanEditBlock || !notEntity) return;
+        if (!facingBlock || !playerCanEditBlock || !notEntity || !notIllegalPlanting) return;
         if (newBlockState.equals(oldBlockState) || (!canMine && !creative)) {
             world.playSound(player, pos, oldSound.getBreakSound(), SoundSource.BLOCKS, oldSound.getVolume(), oldSound.getPitch());
             player.swing(InteractionHand.OFF_HAND);

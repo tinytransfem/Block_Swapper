@@ -15,6 +15,7 @@ public class ServerConfig {
     public static ForgeConfigSpec.BooleanValue ENABLE_EXCAVATING;
     public static ForgeConfigSpec.BooleanValue ENABLE_FATIGUE;
     public static ForgeConfigSpec.BooleanValue ENABLE_CREATIVE;
+    public static ForgeConfigSpec.BooleanValue ENABLE_UNIVERSAL_PLANTING;
 
     public static ForgeConfigSpec.BooleanValue ENABLE_TABLE;
     public static ForgeConfigSpec.BooleanValue ENABLE_TRADE;
@@ -28,6 +29,8 @@ public class ServerConfig {
     public static Boolean doesFatigueAffect() { return ENABLE_FATIGUE.get(); }
 
     public static Boolean doesCreativeAffect() { return ENABLE_CREATIVE.get(); }
+
+    public static Boolean canPlant() { return ENABLE_UNIVERSAL_PLANTING.get(); }
 
     public static Boolean getSwapDisabled(Block block) { return SWAP_BLACKLIST.get().contains(ForgeRegistries.BLOCKS.getKey(block).toString()); }
 
@@ -58,6 +61,9 @@ public class ServerConfig {
 
         SERVER_BUILDER.comment("Enable swapping and excavating of ALL blocks when in creative mode", "default = true");
         ENABLE_CREATIVE = SERVER_BUILDER.define("affectedByCreativeMode", true);
+
+        SERVER_BUILDER.comment("\nEnable swapping in seeds, even if the block below is not farmland (they will still grow!)\nThis is for decorative purposes only, the crops will break if they receive a block update!", "default = false");
+        ENABLE_UNIVERSAL_PLANTING = SERVER_BUILDER.define("canPlantUniversally", false);
 
         SERVER_BUILDER.comment("\nDisable block swapping when under the effect of Mining Fatigue", "default = true");
         ENABLE_FATIGUE = SERVER_BUILDER.define("affectedByMiningFatigue", true);
