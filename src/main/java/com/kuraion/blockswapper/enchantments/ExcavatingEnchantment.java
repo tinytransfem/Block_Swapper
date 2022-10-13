@@ -37,11 +37,11 @@ public class ExcavatingEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return ServerConfig.getEnchantmentEnabled()
                && ServerConfig.getEnchantmentSource(ServerConfig.ENABLE_TABLE)
-               && (stack.getItem() == ItemsInit.DIAMOND_BLOCK_SWAPPER.get() || stack.getItem() == Items.BOOK);
+               && (stack.getItem() == ItemsInit.NETHERITE_BLOCK_SWAPPER.get() || stack.getItem() == Items.BOOK);
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {return (stack.getItem() == ItemsInit.DIAMOND_BLOCK_SWAPPER.get() || stack.getItem() == Items.BOOK) && ServerConfig.getEnchantmentEnabled();}
+    public boolean canEnchant(ItemStack stack) {return (stack.getItem() == ItemsInit.NETHERITE_BLOCK_SWAPPER.get() || stack.getItem() == Items.BOOK) && ServerConfig.getEnchantmentEnabled();}
 
     @Override
     public boolean isAllowedOnBooks() {return ServerConfig.getEnchantmentEnabled();}

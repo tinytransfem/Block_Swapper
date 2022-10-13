@@ -2,6 +2,7 @@ package com.kuraion.blockswapper;
 
 import com.kuraion.blockswapper.init.EnchantmentsInit;
 import com.kuraion.blockswapper.init.ItemsInit;
+import com.kuraion.blockswapper.init.MissingMappings;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,7 @@ public class BlockSwapperMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ServerConfig.SERVER_CONFIG);
 
         MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::onRightClick);
+        MinecraftForge.EVENT_BUS.addListener(MissingMappings::missingMapping);
     }
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

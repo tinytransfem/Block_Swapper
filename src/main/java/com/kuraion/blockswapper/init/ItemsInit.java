@@ -14,6 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemsInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BlockSwapperMod.MODID);
 
-    public static final RegistryObject<Item> DIAMOND_BLOCK_SWAPPER = ITEMS.register("diamond_block_swapper", () -> new BlockSwapperItem(Tiers.DIAMOND, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> NETHERITE_BLOCK_SWAPPER = ITEMS.register("netherite_block_swapper", () -> new BlockSwapperItem(Tiers.NETHERITE, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
     public static final RegistryObject<Item> COPPER_BLOCK_SWAPPER = ITEMS.register("copper_block_swapper", () -> new BlockSwapperItem(Tiers.IRON, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
 }

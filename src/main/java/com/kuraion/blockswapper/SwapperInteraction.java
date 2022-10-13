@@ -55,7 +55,7 @@ public class SwapperInteraction {
                     Items.STONE_HOE.isCorrectToolForDrops(oldBlockState)) {
                 canMine = true;
             }
-        } else if (heldMain.is(ItemsInit.DIAMOND_BLOCK_SWAPPER.get())) {
+        } else if (heldMain.is(ItemsInit.NETHERITE_BLOCK_SWAPPER.get())) {
             if  (Items.DIAMOND_AXE.isCorrectToolForDrops(oldBlockState) ||
                     Items.DIAMOND_PICKAXE.isCorrectToolForDrops(oldBlockState) ||
                     Items.DIAMOND_SHOVEL.isCorrectToolForDrops(oldBlockState) ||
