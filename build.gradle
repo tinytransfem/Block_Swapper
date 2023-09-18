@@ -63,5 +63,5 @@ dependencies {
 }
 
 jar {
-    archiveName = "Block_Swapper-1.19-${version}.${extension}"
+    archiveName = "Block_Swapper-1.19.2-${version}.${extension}"
 }
