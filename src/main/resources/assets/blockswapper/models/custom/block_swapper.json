@@ -1,8 +1,8 @@
 {
 	"texture_size": [48, 32],
 	"textures": {
-		"2": "blockswapper:items/netherite_block_swapper",
-		"particle": "blockswapper:items/netherite_block_swapper"
+		"2": "blockswapper:netherite_block_swapper",
+		"particle": "blockswapper:netherite_block_swapper"
 	},
 	"elements": [
 		{

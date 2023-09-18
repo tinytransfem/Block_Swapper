@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[41,)"
+loaderVersion="[45,)"
 license="MIT License"
 
 [[mods]]
@@ -8,13 +8,13 @@ version="2.0"
 displayName="Block Swapper"
 credits="Credit goes to Abu's horrible house and my urge to swap it."
 displayURL="https://www.curseforge.com/minecraft/mc-mods/block-swapper"
-authors="Kuraion"
+authors="tinytransfem"
 logoFile="logo.png"
 description='''Adds a new tool type that lets you swap placed blocks with items in your offhand.'''
 
 [[dependencies.blockswapper]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,]"
+    versionRange="[1.19.4,]"
     ordering="NONE"
     side="BOTH"
