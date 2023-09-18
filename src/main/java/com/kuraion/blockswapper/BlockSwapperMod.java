@@ -1,5 +1,6 @@
 package com.kuraion.blockswapper;
 
+import com.kuraion.blockswapper.init.CreativeModeTabsInit;
 import com.kuraion.blockswapper.init.EnchantmentsInit;
 import com.kuraion.blockswapper.init.ItemsInit;
 import com.kuraion.blockswapper.init.MissingMappings;
@@ -40,6 +41,7 @@ public class BlockSwapperMod {
         MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::swapperMainHandInteraction);
         MinecraftForge.EVENT_BUS.addListener(SwapperInteraction::swapperOffhandInteraction);
         MinecraftForge.EVENT_BUS.addListener(MissingMappings::missingMapping);
+        modBus.addListener(CreativeModeTabsInit::addItems);
     }
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,
