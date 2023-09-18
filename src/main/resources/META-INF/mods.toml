@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[45,)"
+loaderVersion="[47,)"
 license="MIT License"
 
 [[mods]]
@@ -15,6 +15,6 @@ description='''Adds a new tool type that lets you swap placed blocks with items 
 [[dependencies.blockswapper]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.4,]"
+    versionRange="[1.20.1,]"
     ordering="NONE"
     side="BOTH"

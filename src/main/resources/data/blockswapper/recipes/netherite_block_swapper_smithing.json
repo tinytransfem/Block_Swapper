@@ -1,6 +1,5 @@
 {
-  "group": "blockswapper",
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
   "addition": {
     "item": "minecraft:netherite_ingot"
   },
@@ -9,5 +8,8 @@
   },
   "result": {
     "item": "blockswapper:netherite_block_swapper"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }
